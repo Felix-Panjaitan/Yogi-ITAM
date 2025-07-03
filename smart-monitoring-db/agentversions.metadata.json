@@ -1,1 +1,0 @@
-{"indexes":[{"v":{"$numberInt":"2"},"key":{"_id":{"$numberInt":"1"}},"name":"_id_"},{"v":{"$numberInt":"2"},"key":{"version":{"$numberInt":"1"}},"name":"version_1","background":true,"unique":true}],"uuid":"489f4a303b67462b8db93165eb7082e3","collectionName":"agentversions","type":"collection"}
