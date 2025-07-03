@@ -1,0 +1,39 @@
+version: '3.8'
+
+services:
+  mongodb:
+    image: mongo:latest
+    restart: always
+    volumes:
+      - mongodb_data:/data/db
+    ports:
+      - "27017:27017"
+
+  backend:
+    image: d1ngus/yogi-itam-backend:latest
+    restart: always
+    depends_on:
+      - mongodb
+    environment:
+      - PORT=3000
+      - MONGO_URI=mongodb://mongodb:27017/yogi-itam
+      - JWT_SECRET=smartmonitoring-secret
+      - BASE_URL=http://backend:3000
+    ports:
+      - "3000:3000"
+    volumes:
+      - backend_data:/app/public
+
+  frontend:
+    image: d1ngus/yogi-itam-frontend:latest
+    restart: always
+    depends_on:
+      - backend
+    ports:
+      - "80:80"
+    environment:
+      - VITE_API_BASE_URL=http://localhost:3000
+
+volumes:
+  mongodb_data:
+  backend_data:

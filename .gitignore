@@ -1,0 +1,65 @@
+# Dependencies
+node_modules/
+**/node_modules/
+/.pnp
+.pnp.js
+
+# Environment variables
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Build files
+/dist
+**/dist
+/build
+**/build
+/smart-monitoring-frontend/dist
+
+# Debug logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+*.log
+logs/
+
+# Agent files
+agent_versions/
+smart-monitoring-backend/public/agent_versions/
+/agent_versions
+
+# MongoDB data
+/data/
+mongodb_data/
+
+# OS files
+.DS_Store
+Thumbs.db
+.directory
+*.swp
+
+# IDE/Editor folders
+.idea/
+.vscode/
+*.sublime-project
+*.sublime-workspace
+.project
+.classpath
+
+# Testing and coverage
+/coverage
+.nyc_output
+
+# Docker
+.dockerignore
+
+# Misc
+.cache/
+.temp/
+*.bak
+
+# BIG files
+*.zip
+/agent

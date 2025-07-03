@@ -1,0 +1,1 @@
+{"indexes":[{"v":{"$numberInt":"2"},"key":{"_id":{"$numberInt":"1"}},"name":"_id_"},{"v":{"$numberInt":"2"},"key":{"pc":{"$numberInt":"1"},"date":{"$numberInt":"1"}},"name":"pc_1_date_1","background":true,"unique":true}],"uuid":"5dcdc7b8977141f2bcd497e78453957b","collectionName":"uptimes","type":"collection"}
