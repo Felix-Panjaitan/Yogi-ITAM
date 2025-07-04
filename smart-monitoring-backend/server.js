@@ -49,7 +49,15 @@ const app = express();
 const server = http.createServer(app);
 const io = new Server(server, {
   cors: {
-    origin: ["http://localhost:5173", "http://10.20.0.71:5173"],
+    origin: [
+      "http://localhost:5173",
+      "http://10.20.0.71:5173",
+      "http://localhost", // Frontend in production
+      "http://localhost:80", // Frontend standard HTTP port
+      "null", // For requests with no origin (like Node.js scripts)
+      "http://127.0.0.1", // Local loopback address
+      "http://127.0.0.1:3000",
+    ],
     methods: ["GET", "POST"],
     credentials: true,
   },
@@ -58,7 +66,15 @@ const io = new Server(server, {
 // ============ MIDDLEWARE ============ //
 app.use(
   cors({
-    origin: ["http://localhost:5173", "http://10.20.0.71:5173"],
+    origin: [
+      "http://localhost:5173",
+      "http://10.20.0.71:5173",
+      "http://localhost", // Frontend in production
+      "http://localhost:80", // Frontend standard HTTP port
+      "null", // For requests with no origin (like Node.js scripts)
+      "http://127.0.0.1", // Local loopback address
+      "http://127.0.0.1:3000",
+    ],
     credentials: true,
   })
 );
@@ -219,9 +235,13 @@ io.on("connection", (socket) => {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data),
       });
-      const errorText = await res.text();
-      console.error("❌ Spec forward error:", errorText);
-      throw new Error(errorText);
+
+      if (!res.ok) {
+        const errorText = await res.text();
+        console.error(`❌ Spec forward error (${res.status}):`, errorText);
+      } else {
+        console.log("✅ Spec forwarded successfully");
+      }
     } catch (err) {
       console.error("❌ Spec forward error:", err.message);
     }

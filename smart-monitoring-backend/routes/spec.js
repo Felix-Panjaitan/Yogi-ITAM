@@ -22,6 +22,10 @@ router.post("/", async (req, res) => {
       return res.status(400).json({ message: "Invalid pcId" });
     }
 
+    if (newSpec.macAddress === "-") {
+      delete newSpec.macAddress;
+    }
+
     const pc = await Pc.findById(pcId);
     if (!pc) return res.status(404).json({ message: "PC not found" });
 
